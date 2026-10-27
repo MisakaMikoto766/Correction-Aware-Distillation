@@ -1,0 +1,45 @@
+{
+  "datasets": [
+    "MedMCQA",
+    "MedQA",
+    "PubMedQA"
+  ],
+  "student_model": "Qwen3.5-9B",
+  "teacher_model": "DeepSeek-V4-Flash",
+  "training_samples": 9877,
+  "validation_samples": 1493,
+  "test_samples": 1490,
+  "specialists": {
+    "minimum": 3,
+    "maximum": 5,
+    "maximum_rounds": 3,
+    "partial_correct_confidence": 0.5,
+    "consensus_agreement": 0.8,
+    "consensus_confidence": 0.7
+  },
+  "mcv": {
+    "partial_correct_factor": 0.5,
+    "expert_error_weight": 0.55,
+    "round_weight": 0.2,
+    "arbitration_weight": 0.15,
+    "gold_correction_weight": 0.1
+  },
+  "training": {
+    "lambda": 0.2,
+    "omega": 1.0,
+    "precision": "bf16",
+    "epochs": 3,
+    "learning_rate": 1e-05,
+    "warmup_ratio": 0.03,
+    "maximum_sequence_length": 2048,
+    "per_device_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "gpus": 4
+  },
+  "inference": {
+    "model_calls": 1,
+    "maximum_input_length": 2048,
+    "maximum_new_tokens": 512,
+    "sampling": false
+  }
+}
